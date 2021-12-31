@@ -15,6 +15,7 @@ from env_test import env
 from server import Server
 import unittest
 
+
 class Test(unittest.TestCase):
 
     def setUp(self) -> None:
@@ -27,11 +28,14 @@ class Test(unittest.TestCase):
         return server.app
 
     def test_hello(self):
+        """Simple test to illustrate getting a response from a route."""
         app = self.get_app()
-        request, response = app.test_client.get("/api/user/hello")
+        _, response = app.test_client.get("/api/user/hello")
         self.assertEqual(response.json["message"], "hello")
 
     def test_add_user(self):
+        """Deleteing a user if it exists, adding a user and showing access to a
+        protected route."""
         app = self.get_app()
         user = {"username": "test", "password": "test_password", "email": "test@test.com"}
         _, response = app.test_client.post("/api/user/delete_user", json=user)
@@ -46,7 +50,7 @@ class Test(unittest.TestCase):
 
         _, response = app.test_client.get("/api/user/protected", headers={"Authorization": f"Bearer {token}"})
         self.assertEqual(response.json["message"], "protected")
-        
+
         _, response = app.test_client.get("/api/user/protected")
         self.assertEqual(response.status_code, 401)
 
