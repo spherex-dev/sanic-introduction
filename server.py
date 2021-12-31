@@ -28,10 +28,6 @@ class Server:
         self.settings = {"host": "localhost", "port": 5005}
         self.app = Sanic(name=name)
 
-        # path to settings
-        self.default_path = "sanic_service/default"
-        self.setting_path = f"sanic_service/{self.name}"
-        self.sanic_path = f"{self.setting_path}/sanic"
         self.blueprints = ["user"]
 
         self.log_format = "%(asctime)s [%(levelname)s]: %(message)s"
