@@ -51,7 +51,9 @@ class Server:
     def setup(self):
         self.setup_logs()
         self.setup_blueprints()
-        initialize(self.app, User.app_authenticate)
+        initialize(self.app,
+                   User.app_authenticate,
+                   cookie_set=True)
 
     def run(self, auto_reload=True):
 

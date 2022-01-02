@@ -16,7 +16,7 @@ Running the unit tests will provide the fastest way to understand how the code w
 
 ### User endpoint tests
 
-The user endpoint tests are located under `./user/tsts/test_user.py` will illustrace a simple request to an end point and the creation/deletion of a user, in addition to connection to a protected endpoint.
+The user endpoint tests are located under `./user/tests/test_user.py` will illustrace a simple request to an end point and the creation/deletion of a user, in addition to connection to a protected endpoint.
 
 ## Footer
 

@@ -44,11 +44,11 @@ class Test(unittest.TestCase):
 
         _, response = app.test_client.post("/auth", json=user)
         self.assertTrue("access_token" in response.json)
-        token = response.json["access_token"]
-        _, response = app.test_client.get("/auth/verify", headers={"Authorization": f"Bearer {token}"})
+        cookies = response.cookies
+        _, response = app.test_client.get("/auth/verify", cookies=cookies)
         self.assertTrue(response.json["valid"])
 
-        _, response = app.test_client.get("/api/user/protected", headers={"Authorization": f"Bearer {token}"})
+        _, response = app.test_client.get("/api/user/protected", cookies=cookies)
         self.assertEqual(response.json["message"], "protected")
 
         _, response = app.test_client.get("/api/user/protected")
